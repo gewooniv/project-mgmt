@@ -25,14 +25,20 @@ function App() {
     setIsCreating(false);
   }
 
+  const [ selectedProject, setSelectedProject ] = useState();
+
+  function handleSelect(id) {
+      setSelectedProject(id);
+  }
+
   return (
     <>
     <main className="flex flew-row my-8">
       <div className="basis-1/3">
-        <Sidebar isCreating={isCreating} projects={projects} onCreate={createProject} />
+        <Sidebar isCreating={isCreating} projects={projects} onCreate={createProject} handleSelect={handleSelect} selectedProject={selectedProject} />
       </div>
       <div className="basis-2/3">
-        <Content isCreating={isCreating} onCreate={createProject} handleSave={handleSave} />
+        <Content isCreating={isCreating} projects={projects} onCreate={createProject} handleSave={handleSave} selectedProject={selectedProject} />
       </div>
     </main>
     </>

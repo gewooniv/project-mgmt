@@ -1,9 +1,9 @@
-export default function Project({ id, project, handleSelect, selectedProject }) {
+export default function ProjectItem({ projectId, project, handleSelect, selectedProject }) {
     return (
-        <li key={id}>
+        <li key={projectId}>
             <button 
-                onClick={() => handleSelect(id)}
-                className={id === selectedProject ? "active: bg-slate-800" : undefined}>{project.title}</button>
+                onClick={() => handleSelect(projectId)}
+                className={projectId === selectedProject ? "active: bg-slate-800" : undefined}>{project.title}</button>
         </li>
     )
 }

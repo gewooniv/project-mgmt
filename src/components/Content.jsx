@@ -1,13 +1,23 @@
-import { useState } from "react";
-import image from "../assets/no-projects.png";
 import NewProject from "./NewProject";
 import NoProject from "./NoProject";
+import Project from "./Project";
 
-export default function Content({ isCreating, onCreate, handleSave }) {
+export default function Content({ isCreating, onCreate, handleSave, projects, selectedProject }) {
+    function renderSwitch(isCreating, selectedProject, projects) {
+        switch(isCreating) {
+            case true:
+                return <NewProject label="TITLE" handleSave={handleSave}/>;
+            case selectedProject == undefined:
+                console.log(selectedProject)
+                return <Project project={projects[selectedProject]} />;
+            default:
+                return <NoProject onCreate={onCreate}/>;
+        }
+      }
 
     return (
         <div className="grid justify-items-center" id="content">
-            { isCreating ? <NewProject label="TITLE" handleSave={handleSave}/> : <NoProject onCreate={onCreate}/> }
+            {renderSwitch(isCreating, selectedProject, projects)}
         </div>
     )
 }
