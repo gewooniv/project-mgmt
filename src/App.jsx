@@ -3,18 +3,7 @@ import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 
 function App() {
-  const [ projects, setProjects ] = useState([{
-    title: '1', 
-    description: 'a', 
-    dueDate: 'a'
-    }, 
-    {
-    title: '2', 
-    description: 'b', 
-    dueDate: 'b'
-    }
-  ]);
-
+  const [ projects, setProjects ] = useState([]);
   const [ isCreating, setIsCreating ] = useState(false);
 
   function createProject() {
@@ -22,13 +11,17 @@ function App() {
   }
 
   function handleSave() {
-    setProjects({
-        ...projects,
+    const projectId = projects.length
+
+    setProjects([
+        ...projects, {
+        id: projectId,
         title: 'test',
         description: 'test',
         dueDate: 'test'
-    });
-    console.log(projects);
+        }
+    ]);
+
     setIsCreating(false);
   }
 
