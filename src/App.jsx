@@ -27,10 +27,14 @@ function App() {
 
   return (
     <>
-    <div className="flex flew-row">
-      <div className="basis-1/4"><Sidebar isCreating={isCreating} onCreate={createProject} projects={projects}/></div>
-      <div className="basis-3/4"><Content isCreating={isCreating} onCreate={createProject} handleSave={handleSave} /></div>
-    </div>
+    <main className="flex flew-row my-8">
+      <div className="basis-1/3">
+        <Sidebar isCreating={isCreating} projects={projects} onCreate={createProject} />
+      </div>
+      <div className="basis-2/3">
+        <Content isCreating={isCreating} onCreate={createProject} handleSave={handleSave} />
+      </div>
+    </main>
     </>
   );
 }
