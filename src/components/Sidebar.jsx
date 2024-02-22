@@ -17,7 +17,7 @@ export default function Sidebar({ onCreate, projects }) {
             </div>
             <ul>
                 {projects.map((project) => (
-                    <ProjectItem id={project.id} project={project} handleSelect={handleSelect} />
+                    <ProjectItem id={project.id} project={project} selectedProject={selectedProject} handleSelect={handleSelect} />
                 ))}
             </ul>
         </div>

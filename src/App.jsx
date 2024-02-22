@@ -16,9 +16,9 @@ function App() {
     setProjects([
         ...projects, {
         id: projectId,
-        title: 'test',
-        description: 'test',
-        dueDate: 'test'
+        title: 'Project ' + projectId,
+        description: 'Description',
+        dueDate: '2/22/2024'
         }
     ]);
 
