@@ -3,7 +3,7 @@ export default function ProjectItem({ projectId, project, handleSelect, selected
         <li key={projectId}>
             <button
                 onClick={() => handleSelect(projectId)}
-                className={projectId === selectedProject ? "active: bg-slate-800" : undefined}>{project.title}</button>
+                className={projectId === selectedProject ? "px-4 py-2 rounded-md active: bg-stone-800" : "px-4 py-2 rounded-md"}>{project.title}</button>
         </li>
     )
 }
