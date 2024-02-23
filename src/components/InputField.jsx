@@ -1,8 +1,8 @@
-export default function InputField({ label, ...props }) {
+export default function InputField({ label, input, ...props }) {
     return (
         <>
         <label>{label}</label>
-        <input type="text" {...props} />
+        <input ref={input} type="text" {...props} />
         </>
     )
 }
