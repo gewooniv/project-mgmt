@@ -6,11 +6,21 @@ export default function Content({
   onCreate,
   handleSave,
   projectsState,
-  input,
+  inputTitle,
+  inputDescription,
+  inputDueDate,
 }) {
   function renderSwitch(projectsState) {
     if (projectsState.selectedProjectId === null) {
-      return <NewProject label="TITLE" handleSave={handleSave} input={input} />;
+      return (
+        <NewProject
+          label="TITLE"
+          handleSave={handleSave}
+          inputTitle={inputTitle}
+          inputDescription={inputDescription}
+          inputDueDate={inputDueDate}
+        />
+      );
     } else if (projectsState.selectedProjectId === undefined) {
       return <NoProject onCreate={onCreate} />;
     } else {
