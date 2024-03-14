@@ -5,6 +5,7 @@ import Project from "./Project";
 export default function Content({
   onCreate,
   onCancel,
+  onDelete,
   handleAddProject,
   projectsState,
 }) {
@@ -23,6 +24,7 @@ export default function Content({
       return (
         <Project
           project={projectsState.projects[projectsState.selectedProjectId]}
+          onDelete={onDelete}
         />
       );
     }

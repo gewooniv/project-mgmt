@@ -26,6 +26,18 @@ function App() {
     });
   }
 
+  function handleDelete() {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter(
+          (project) => project.id !== prevState.selectedProjectId,
+        ),
+      };
+    });
+  }
+
   function handleAddProject(projectData) {
     const projectId = projectsState.projects.length;
 
@@ -67,6 +79,7 @@ function App() {
             projectsState={projectsState}
             onCreate={handleCreate}
             onCancel={handleCancel}
+            onDelete={handleDelete}
             handleAddProject={handleAddProject}
           />
         </div>
