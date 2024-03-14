@@ -1,3 +1,5 @@
+import Tasks from "./Tasks";
+
 export default function Project({ project, onDelete }) {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
@@ -20,11 +22,13 @@ export default function Project({ project, onDelete }) {
           </button>
         </div>
         <p className="text-stone-500 font-bold">{formattedDate}</p>
+
+        <hr className="py-2" />
+        <p className="text-stone-600 whitespace-pre-wrap">
+          {project.description}
+        </p>
       </header>
-      <hr className="py-2" />
-      <p className="text-stone-600 whitespace-pre-wrap">
-        {project.description}
-      </p>
+      <Tasks />
     </div>
   );
 }
