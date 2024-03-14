@@ -31,13 +31,8 @@ export default function NewProject({ onAdd }) {
       </menu>
       <div id="content">
         <InputField label="title" input={inputTitle} type="text" />
-        <InputField
-          label="description"
-          input={inputDescription}
-          type="text"
-          textarea
-        />
-        <InputField label="due date" input={inputDueDate} type="text" />
+        <InputField label="description" input={inputDescription} textarea />
+        <InputField label="due date" input={inputDueDate} type="date" />
       </div>
     </div>
   );

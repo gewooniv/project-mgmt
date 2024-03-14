@@ -12,7 +12,7 @@ export default function Sidebar({ projectsState, onCreate, handleSelect }) {
           + Add project
         </button>
       </div>
-      <ul>
+      <ul className="mt-6">
         {projectsState.projects.map((project) => (
           <ProjectItem
             key={project.id}

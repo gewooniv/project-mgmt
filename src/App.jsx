@@ -28,6 +28,7 @@ function App() {
 
       return {
         ...prevState,
+        selectedProjectId: projectId,
         projects: [...prevState.projects, newProject],
       };
     });
