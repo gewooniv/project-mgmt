@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 
@@ -7,9 +7,6 @@ function App() {
     selectedProjectId: undefined,
     projects: [],
   });
-  const inputTitle = useRef();
-  const inputDescription = useRef();
-  const inputDueDate = useRef();
 
   function handleCreate() {
     setProjectsState((prevState) => {
@@ -20,22 +17,18 @@ function App() {
     });
   }
 
-  function handleSave() {
+  function handleAddProject(projectData) {
     const projectId = projectsState.projects.length;
 
     setProjectsState((prevState) => {
+      const newProject = {
+        ...projectData,
+        id: projectId,
+      };
+
       return {
         ...prevState,
-        selectedProjectId: null,
-        projects: [
-          ...prevState.projects,
-          {
-            id: projectId,
-            title: inputTitle.current.value,
-            description: inputDescription.current.value,
-            dueDate: inputDueDate.current.value,
-          },
-        ],
+        projects: [...prevState.projects, newProject],
       };
     });
   }
@@ -63,10 +56,7 @@ function App() {
           <Content
             projectsState={projectsState}
             onCreate={handleCreate}
-            handleSave={handleSave}
-            inputTitle={inputTitle}
-            inputDescription={inputDescription}
-            inputDueDate={inputDueDate}
+            handleAddProject={handleAddProject}
           />
         </div>
       </main>
