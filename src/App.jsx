@@ -17,6 +17,15 @@ function App() {
     });
   }
 
+  function handleCancel() {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+      };
+    });
+  }
+
   function handleAddProject(projectData) {
     const projectId = projectsState.projects.length;
 
@@ -50,13 +59,14 @@ function App() {
           <Sidebar
             projectsState={projectsState}
             onCreate={handleCreate}
-            handleSelect={handleSelect}
+            onSelect={handleSelect}
           />
         </div>
         <div className="basis-2/3">
           <Content
             projectsState={projectsState}
             onCreate={handleCreate}
+            onCancel={handleCancel}
             handleAddProject={handleAddProject}
           />
         </div>

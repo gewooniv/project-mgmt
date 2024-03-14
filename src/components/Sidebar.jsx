@@ -1,6 +1,6 @@
 import ProjectItem from "./ProjectItem";
 
-export default function Sidebar({ projectsState, onCreate, handleSelect }) {
+export default function Sidebar({ projectsState, onCreate, onSelect }) {
   return (
     <div className="px-8 py-16 bg-stone-900 text-stone-50 md:w-72 text-center rounded-r-xl">
       <h1 className="my-8 text-center text-3xl font-bold uppercase">Sidebar</h1>
@@ -17,7 +17,7 @@ export default function Sidebar({ projectsState, onCreate, handleSelect }) {
           <ProjectItem
             key={project.id}
             project={project}
-            handleSelect={handleSelect}
+            onSelect={onSelect}
             selectedProjectId={projectsState.selectedProjectId}
           />
         ))}

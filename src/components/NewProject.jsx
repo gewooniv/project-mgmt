@@ -3,7 +3,7 @@ import InputField from "./InputField";
 import Button from "./Button";
 import Modal from "./Modal";
 
-export default function NewProject({ onAdd }) {
+export default function NewProject({ onAdd, onCancel }) {
   const modal = useRef();
 
   const inputTitle = useRef();
@@ -44,7 +44,7 @@ export default function NewProject({ onAdd }) {
       <div className="w-[30rem] px-2 py-4 text-s">
         <menu className="flex items-center justify-end gap-4 my-4">
           <li>
-            <button>Cancel</button>
+            <button onClick={onCancel}>Cancel</button>
           </li>
           <li>
             <Button onClick={handleCreate}>Save</Button>

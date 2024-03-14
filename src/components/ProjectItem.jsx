@@ -1,12 +1,8 @@
-export default function ProjectItem({
-  project,
-  selectedProjectId,
-  handleSelect,
-}) {
+export default function ProjectItem({ project, selectedProjectId, onSelect }) {
   return (
     <li>
       <button
-        onClick={() => handleSelect(project.id)}
+        onClick={() => onSelect(project.id)}
         className={
           project.id === selectedProjectId
             ? "w-full px-4 py-2 rounded-md active: bg-stone-800"

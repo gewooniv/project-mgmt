@@ -2,10 +2,21 @@ import NewProject from "./NewProject";
 import NoProject from "./NoProject";
 import Project from "./Project";
 
-export default function Content({ onCreate, handleAddProject, projectsState }) {
+export default function Content({
+  onCreate,
+  onCancel,
+  handleAddProject,
+  projectsState,
+}) {
   function renderSwitch(projectsState) {
     if (projectsState.selectedProjectId === null) {
-      return <NewProject label="TITLE" onAdd={handleAddProject} />;
+      return (
+        <NewProject
+          label="TITLE"
+          onAdd={handleAddProject}
+          onCancel={onCancel}
+        />
+      );
     } else if (projectsState.selectedProjectId === undefined) {
       return <NoProject onCreate={onCreate} />;
     } else {
