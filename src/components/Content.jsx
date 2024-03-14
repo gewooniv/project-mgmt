@@ -9,6 +9,10 @@ export default function Content({
   handleAddProject,
   projectsState,
 }) {
+  const selectedProject = projectsState.projects.find(
+    (project) => project.id === projectsState.selectedProjectId,
+  );
+
   function renderSwitch(projectsState) {
     if (projectsState.selectedProjectId === null) {
       return (
@@ -21,12 +25,7 @@ export default function Content({
     } else if (projectsState.selectedProjectId === undefined) {
       return <NoProject onCreate={onCreate} />;
     } else {
-      return (
-        <Project
-          project={projectsState.projects[projectsState.selectedProjectId]}
-          onDelete={onDelete}
-        />
-      );
+      return <Project project={selectedProject} onDelete={onDelete} />;
     }
   }
 
