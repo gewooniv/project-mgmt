@@ -3,7 +3,7 @@ import InputField from "./InputField";
 import Button from "./Button";
 import Modal from "./Modal";
 
-export default function NewProject({ onAdd, onCancel }) {
+export default function NewProject({ onAddProject, onCancel }) {
   const modal = useRef();
 
   const inputTitle = useRef();
@@ -24,7 +24,7 @@ export default function NewProject({ onAdd, onCancel }) {
       return;
     }
 
-    onAdd({
+    onAddProject({
       title: enteredTitle,
       description: enteredDescription,
       dueDate: enteredDueDate,

@@ -6,7 +6,9 @@ export default function Content({
   onCreate,
   onCancel,
   onDelete,
-  handleAddProject,
+  onAddProject,
+  onAddTasks,
+  onDeleteTasks,
   projectsState,
 }) {
   const selectedProject = projectsState.projects.find(
@@ -18,14 +20,22 @@ export default function Content({
       return (
         <NewProject
           label="TITLE"
-          onAdd={handleAddProject}
+          onAddProject={onAddProject}
           onCancel={onCancel}
         />
       );
     } else if (projectsState.selectedProjectId === undefined) {
       return <NoProject onCreate={onCreate} />;
     } else {
-      return <Project project={selectedProject} onDelete={onDelete} />;
+      return (
+        <Project
+          project={selectedProject}
+          tasks={projectsState.tasks}
+          onDelete={onDelete}
+          onAddTasks={onAddTasks}
+          onDeleteTasks={onDeleteTasks}
+        />
+      );
     }
   }
 
