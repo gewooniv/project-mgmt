@@ -8,8 +8,10 @@ export default function NewTask({ onAddTasks }) {
   }
 
   function handleConfirm() {
-    onAddTasks(enteredTask);
-    setEnteredTask("");
+    if (enteredTask.trim() !== "") {
+      onAddTasks(enteredTask);
+      setEnteredTask("");
+    }
   }
 
   return (
