@@ -34,6 +34,7 @@ export default function Project({
           {project.description}
         </p>
       </header>
+      <hr className="py-2" />
       <Tasks
         tasks={tasks}
         onAddTasks={onAddTasks}

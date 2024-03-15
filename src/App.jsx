@@ -26,7 +26,14 @@ function App() {
     });
   }
 
-  function handleDeleteTasks() {}
+  function handleDeleteTasks(id) {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter((task) => task.id !== id),
+      };
+    });
+  }
 
   function handleCreate() {
     setProjectsState((prevState) => {
