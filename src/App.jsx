@@ -1,47 +1,118 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 
 function App() {
-  const [ projects, setProjects ] = useState([]);
-  const [ isCreating, setIsCreating ] = useState(false);
-  const input = useRef();
+  const [projectsState, setProjectsState] = useState({
+    selectedProjectId: undefined,
+    projects: [],
+    tasks: [],
+  });
 
-  function createProject() {
-    setIsCreating(true);
+  function handleAddTasks(text) {
+    const taskId = projectsState.tasks.length;
+
+    setProjectsState((prevState) => {
+      const newTask = {
+        text: text,
+        projectId: prevState.selectedProjectId,
+        id: taskId,
+      };
+
+      return {
+        ...prevState,
+        tasks: [newTask, ...prevState.tasks],
+      };
+    });
   }
 
-  function handleSave() {
-    const projectId = projects.length
+  function handleDeleteTasks(id) {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter((task) => task.id !== id),
+      };
+    });
+  }
 
-    setProjects([
-        ...projects, {
+  function handleCreate() {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: null,
+      };
+    });
+  }
+
+  function handleCancel() {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+      };
+    });
+  }
+
+  function handleDelete() {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter(
+          (project) => project.id !== prevState.selectedProjectId,
+        ),
+      };
+    });
+  }
+
+  function handleAddProject(projectData) {
+    const projectId = projectsState.projects.length;
+
+    setProjectsState((prevState) => {
+      const newProject = {
+        ...projectData,
         id: projectId,
-        title: input.current.value,
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        dueDate: '2/22/2024'
-        }
-    ]);
+      };
 
-    setIsCreating(false);
+      return {
+        ...prevState,
+        selectedProjectId: projectId,
+        projects: [...prevState.projects, newProject],
+      };
+    });
   }
-
-  const [ selectedProject, setSelectedProject ] = useState();
 
   function handleSelect(id) {
-      setSelectedProject(id);
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: id,
+      };
+    });
   }
 
   return (
     <>
-    <main className="flex flew-row my-8">
-      <div className="basis-1/3">
-        <Sidebar isCreating={isCreating} projects={projects} onCreate={createProject} handleSelect={handleSelect} selectedProject={selectedProject} />
-      </div>
-      <div className="basis-2/3">
-        <Content isCreating={isCreating} projects={projects} onCreate={createProject} handleSave={handleSave} selectedProject={selectedProject} input={input} />
-      </div>
-    </main>
+      <main className="flex flew-row my-8">
+        <div className="basis-1/3">
+          <Sidebar
+            projectsState={projectsState}
+            onCreate={handleCreate}
+            onSelect={handleSelect}
+          />
+        </div>
+        <div className="basis-2/3">
+          <Content
+            projectsState={projectsState}
+            onCreate={handleCreate}
+            onCancel={handleCancel}
+            onDelete={handleDelete}
+            onAddProject={handleAddProject}
+            onAddTasks={handleAddTasks}
+            onDeleteTasks={handleDeleteTasks}
+          />
+        </div>
+      </main>
     </>
   );
 }
